@@ -3,11 +3,8 @@ const path = require('node:path');
 const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config.json');
 
-// const { Captcha } = require("captcha-canvas");
-// const { MessageAttachment } = require("discord.js");
-
 // Create a new client instance
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES] });
 module.exports = client;
 
 // Slash Commands
@@ -36,27 +33,6 @@ for (const file of eventFiles) {
         client.on(event.name, (...args) => event.execute(...args));
     }
 }
-
-// client.on("guildMemberAdd", async (member) => {
-//     const captcha = new Captcha(); //create a captcha canvas of 100x300.
-//     captcha.async = true;
-//     captcha.addDecoy(); //Add decoy text on captcha canvas.
-//     captcha.drawTrace(); //draw trace lines on captcha canvas.
-//     captcha.drawCaptcha(); //draw captcha text on captcha canvas.
-
-//     const captchaAttachment = new MessageAttachment(
-//         await captcha.png,
-//         "captcha.png"
-//     );
-
-//     const msg = {
-//         files: [captchaAttachment],
-//         content: `Code: ${captcha.text}`,
-//     };
-
-//     console.log(msg);
-//     await member.send(msg);
-// })
 
 // Login to Discord with your client's token
 client.login(token);
