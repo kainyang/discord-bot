@@ -64,4 +64,3 @@ module.exports = {
         return interaction.reply(content);
     },
 };
-// TODO: Add events handling
