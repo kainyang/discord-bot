@@ -4,6 +4,8 @@ const { MessageAttachment, MessageEmbed, MessageActionRow, MessageButton, Modal,
 const { randomString, shuffle } = require('./../utils/common.utils');
 const { jsonReader, jsonWriter } = require('./../data/services/database');
 
+const { memberRoleId } = require('../config.json');
+
 module.exports = {
     name: 'interactionCreate',
     async execute(interaction) {
@@ -33,7 +35,7 @@ module.exports = {
                 const captchaValue = data.value;
                 if (interaction.values.includes(captchaValue)) {
                     try {
-                        await interaction.member.roles.add('990657075518517318');
+                        await interaction.member.roles.add(memberRoleId);
                         await interaction.reply({ content: 'Verification completed!', ephemeral: true });
                     } catch (err) {
                         console.log(err);
@@ -60,7 +62,7 @@ module.exports = {
 
                     if (submittedCaptcha === captchaValue) {
                         try {
-                            await interaction.member.roles.add('990657075518517318');
+                            await interaction.member.roles.add(memberRoleId);
                             await interaction.reply({ content: 'Verification completed!', ephemeral: true });
                         } catch (err) {
                             console.log(err);

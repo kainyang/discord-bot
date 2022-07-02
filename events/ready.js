@@ -1,4 +1,5 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { verifyChannelId } = require('../config.json');
 
 module.exports = {
 	name: 'ready',
@@ -21,6 +22,6 @@ module.exports = {
 
 		const content = { embeds: [embed], components: [row] };
 
-		client.channels.cache.get('990658112354660403').send(content);
+		client.channels.cache.get(verifyChannelId).send(content);
 	},
 };
